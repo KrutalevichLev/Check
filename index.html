@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оплата · Sigma Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-noise"></div>
+
+  <main class="wrap">
+    <!-- Левая часть: премиум-карточка -->
+    <section class="side">
+      <p class="eyebrow">// PROJECT MAYHEM · PAYMENT</p>
+      <h1 class="title">Платёжная<br/><span class="accent">форма</span></h1>
+      <p class="subtitle">«Первая правило клуба: ты не говоришь о клубе. Вторая: плати.»</p>
+
+      <div class="card-preview" id="cardPreview">
+        <div class="card-front">
+          <div class="card-top">
+            <span class="chip"></span>
+            <span class="brand">SIGMA&nbsp;PAY</span>
+          </div>
+          <div class="card-number" id="pvNumber">•••• •••• •••• ••••</div>
+          <div class="card-bottom">
+            <div class="card-holder">
+              <small>ДЕРЖАТЕЛЬ</small>
+              <span id="pvName">IVAN DOE</span>
+            </div>
+            <div class="card-exp">
+              <small>ДЕЙСТВУЕТ ДО</small>
+              <span id="pvExp">MM/YY</span>
+            </div>
+          </div>
+          <div class="shine"></div>
+        </div>
+        <div class="card-back">
+          <div class="magnetic"></div>
+          <div class="ccv-row">
+            <span class="ccv-label">CCV</span>
+            <span class="ccv-box" id="pvCcv">•••</span>
+          </div>
+          <div class="shine shine-back"></div>
+        </div>
+      </div>
+
+      <ul class="features">
+        <li><span>✦</span> Шифрование TLS 1.3</li>
+        <li><span>✦</span> 3-D Secure 2.0</li>
+        <li><span>✦</span> PCI DSS Level 1</li>
+      </ul>
+    </section>
+
+    <!-- Правая часть: форма -->
+    <section class="panel">
+      <form id="payForm" novalidate autocomplete="off">
+        <h2 class="panel-title">Данные карты</h2>
+
+        <div class="row row-3">
+          <div class="field">
+            <label for="lastName">Фамилия</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Дерден" data-alpha />
+            <p class="err-msg"></p>
+          </div>
+          <div class="field">
+            <label for="firstName">Имя</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Тайлер" data-alpha />
+            <p class="err-msg"></p>
+          </div>
+          <div class="field">
+            <label for="middleName">Отчество</label>
+            <input type="text" id="middleName" name="middleName" placeholder="Иванович" data-alpha required="false" />
+            <p class="err-msg"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cardNumber">Номер карты</label>
+          <div class="input-icon">
+            <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric"
+                   placeholder="0000 0000 0000 0000" maxlength="19" />
+            <span class="card-type" id="cardType"></span>
+          </div>
+          <p class="err-msg"></p>
+        </div>
+
+        <div class="row row-2">
+          <div class="field">
+            <label for="ccv">CCV</label>
+            <div class="input-icon">
+              <input type="password" id="ccv" name="ccv" inputmode="numeric"
+                     placeholder="•••" maxlength="4" />
+              <button type="button" class="eye" id="toggleCcv" aria-label="Показать CCV">👁</button>
+            </div>
+            <p class="err-msg"></p>
+          </div>
+          <div class="field">
+            <label for="expiry">Срок действия</label>
+            <input type="text" id="expiry" name="expiry" inputmode="numeric"
+                   placeholder="MM/YY" maxlength="5" />
+            <p class="err-msg"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="tyler@paper.com" />
+          <p class="err-msg"></p>
+        </div>
+
+        <label class="agree">
+          <input type="checkbox" id="agree" />
+          <span class="checkmark"></span>
+          <span class="agree-text">Я согласен с обработкой данных и условиями <a href="#">оферты</a></span>
+        </label>
+        <p class="err-msg agree-err"></p>
+
+        <button type="submit" class="btn" id="submitBtn">
+          <span class="btn-text">Оплатить</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="hint">Демо-режим: данные никуда не отправляются. Ты — это мытьё посуды, отчётами.</p>
+      </form>
+
+      <!-- Экран успеха -->
+      <div class="success" id="successBox" hidden>
+        <div class="success-icon">✔</div>
+        <h3>Оплата прошла</h3>
+        <p id="successText">Чек полетел на почту.</p>
+        <button type="button" class="btn btn-ghost" id="resetBtn">Новая оплата</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
